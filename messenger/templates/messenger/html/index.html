@@ -2,46 +2,39 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href={% static "messenger/css/index.css" %}>
-    <title>Messenger</title>
-</head>
-<body>
-    <div class="app-container">
-        <div class="sidebar">
-            <div class="nav">
-                <div class="icon home"></div>
-                <div class="icon chat"></div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href={% static "messenger/css/index.css" %}>
+        <title>Messenger</title>
+    </head>
+    <body>
+        <aside class="menu">
+            <nav>
+                <div><a href="#"><img src={% static "messenger/images/home.svg" %}/></a></div>
+                <div><a href="#"><img src={% static "messenger/images/chat.svg" %} /></a></div>
+            </nav>
+
+            <div class="settings">
+                <a href="#"><img src={% static "messenger/images/settings.svg" %} /></a>
             </div>
-            <div class="settings-icon icon"></div>
-        </div>
-        <div class="chat-list">
-            <input type="text" class="search" placeholder="Search">
-            <ul class="contacts">
-                <li class="contact">Friends Forever <span>Today, 9:52pm</span></li>
-                <li class="contact">Hiking <span>Wednesday, 9:12am</span></li>
-                <li class="contact">Mera Gang <span>Yesterday, 12:13pm</span></li>
-                <li class="contact active">Anil <span>Today, 9:52pm</span></li>
-                <li class="contact">Chuuthiya <span>Today, 12:11pm</span></li>
-                <li class="contact">Mary ma'am <span>Today, 2:40pm</span></li>
-            </ul>
-        </div>
-        <div class="chat-window">
-            <div class="header">Anil <span>Online - Last seen, 2:02pm</span></div>
-            <div class="messages">
-                <div class="message sent">Hey There!</div>
-                <div class="message sent">How are you? <span>Today, 8:30pm</span></div>
-                <div class="message received">Hello! <span>Today, 8:33pm</span></div>
-                <div class="message received">I am fine and how are you? <span>Today, 8:34pm</span></div>
-                <div class="message sent">I am doing well, Can we meet tomorrow? <span>Today, 8:36pm</span></div>
-                <div class="message received">Yes Sure! <span>Today, 8:59pm</span></div>
+        </aside>
+
+        <aside class="contacts">
+            <div class="search">
+                <img src={% static "messenger/images/search.svg" %} />
+                <input type="text" placeholder="Search">
             </div>
-            <div class="input-bar">
-                <input type="text" placeholder="Message" class="message-input">
-            </div>
-        </div>
-    </div>
-</body>
+
+            <nav>
+
+            </nav>
+        </aside>
+
+        <main>
+            <div class="header-contact"></div>
+            <div class="content-contact"></div>
+        </main>
+
+    </body>
 </html>

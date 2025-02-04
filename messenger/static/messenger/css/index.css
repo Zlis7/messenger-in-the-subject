@@ -10,7 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    gap:25px;
+    gap: 25px;
 }
 
 .menu{
@@ -21,6 +21,7 @@ body {
     padding-top: 20px;
     width: 100px;
     height: 95%;
+    margin-left: 25px;
 }
 
 .menu nav{
@@ -51,8 +52,10 @@ body {
 .contacts{
     display: flex;
     justify-content: center;
-    width: 30%;
+    flex-direction:column;
+    width: 45vh;
     height: 95%;
+    gap:25px;
 }
 
 .search{
@@ -72,9 +75,113 @@ body {
     color:rgb(124,124,124);
     background-color: rgb(74,84,92);
     border: none;
-    outline:none;
+    outline: none;
 }
 
-.contacts nav{
+.all-users-contacts{
+    display:flex;
+    flex-direction:column;
+    gap: 25px;
+    background-color: rgb(74,84,92);
+    padding: 15px;
+    border-radius: 20px;
+    min-height: 90%;
+    overflow-x: auto;
+}
 
+.all-users-contacts::-webkit-scrollbar {
+  width: 0;
+}
+
+.item-contact{
+    display: flex;
+    align-item: center;
+    height:70px;
+    position:relative;
+    border-bottom: 1px solid rgb(74,84,92);
+    cursor: pointer;
+}
+
+
+.item-contact:hover{
+     border-bottom: 1px solid rgb(180,171,171);
+}
+
+.img-item-contact{
+    white-space: nowrap;
+}
+
+.preview{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    padding-left: 20px;
+    padding-bottom: 7px;
+    font-size: 17px;
+    gap: 2px;
+
+}
+
+.contact-name{
+    color:rgb(255,255,255);
+}
+
+.contact-last-message{
+    color: rgb(143,160,175);
+    width: 120px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.status-message{
+    position:absolute;
+    bottom: 5px;
+    left: 50px;
+}
+
+.date-message{
+    position:absolute;
+    right: 1px;
+    bottom: 25px;
+    color: rgb(143,160,175);
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(74,84,92);
+    border-radius: 20px;
+    padding: 20px;
+    width: 100%;
+    margin-right: 25px;
+    height: 95%;
+}
+
+.header-contact{
+    position:relative;
+    display: flex;
+    gap: 10px;
+    border-bottom: 1px solid rgb(180,171,171)
+}
+
+.header-info{
+    align-content:center;
+    padding-bottom: 10px;
+}
+
+.header-info .contact-name{
+    font-size: 25px;
+}
+
+.logout-date{
+    color: rgb(143,160,175)
+}
+
+.settings-contact{
+    position:absolute;
+    right: 1px;
+    bottom: 11px;
+    cursor: pointer;
 }

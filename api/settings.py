@@ -66,6 +66,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': './sqlite.db'
+    }
+}
+
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -77,3 +84,12 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_HOST = 'smpt.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+
+EMAIL_HOST_USER = 'dskm574@yandex.ru'
+EMAIL_HOST_PASSWORD = 'kgayzxntmejrblfg'
+DEFAULT_FROM_EMAIL = 'dskm574@yandex.ru'

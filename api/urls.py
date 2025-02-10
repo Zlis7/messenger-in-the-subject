@@ -5,5 +5,6 @@ from api import views
 urlpatterns = [
     path('', views.index, name='home'),
     path('admin/', admin.site.urls, name='admin'),
-    path('chat/', include('messenger.urls'), name='messenger')
+    path('chat/', include('messenger.urls'), name='messenger'),
+    path('auth/', include('authentication.urls'), name='authentication')
 ]

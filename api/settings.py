@@ -16,7 +16,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'messenger.apps.MessengerConfig'
+    'messenger.apps.MessengerConfig',
+    'authentication.apps.AuthenticationConfig'
 ]
 
 MIDDLEWARE = [
@@ -49,7 +50,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'api.wsgi.app'
 
-DATABASES = {}
+DATABASES = {
+    'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -76,4 +82,24 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+AUTH_USER_MODEL = 'authentication.MinUser'
+
+LOGIN_URL = "/auth/login"
+LOGOUT_URL = "/auth/logout"
+LOGOUT_REDIRECT_URL = "/auth/logout"
+LOGIN_REDIRECT_URL = "/auth/login"
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False
+
+EMAIL_HOST_USER = 'dskm574@yandex.ru'
+EMAIL_HOST_PASSWORD = 'rxvetisquasfiqsm'
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
+EMAIL_ADMIN = EMAIL_HOST_USER

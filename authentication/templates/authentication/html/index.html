@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href={% static "authentication/css/index.css" %}>
+            <title>Messenger</title>
+    </head>
+    <body>
+            <div class="block-form">
+
+                {% if is_login %}
+                    <form method="POST" action={% url 'login' %}>
+                {% else %}
+                    <form method="POST" action={% url 'registration' %}>
+                {% endif %}
+
+                    {% csrf_token %}
+
+                    <label for="email">Почта:</label>
+                    <input type="email" name="email" placeholder="..." required />
+                    <label for="password">Пароль:</label>
+                    <input type="password" name="password" placeholder="..." required />
+
+                    {% if is_login %}
+                        <button type="submit">Войти</button>
+                    {% else %}
+                        <button type="submit">Зарегистрироваться</button>
+                    {% endif %}
+                </form>
+
+                <div>
+                    {% if is_login %}
+                         <a href={% url 'registration' %}>Регистрация</a>
+                    {% else %}
+                        <a href={% url 'login' %}>Вход</a>
+                    {% endif %}
+                </div>
+            </div>
+
+    </body>
+</html>

@@ -1,8 +1,21 @@
 from django.shortcuts import render
-
+from .models import Chats
 
 def index(request):
-    return render(request, 'messenger/html/index.html')
+    context = {
+        'main': 'off'
+    }
+
+    return render(request, 'messenger/html/index.html', context)
 
 def chat(request, id):
-    return render(request, 'messenger/html/chat.html', {'name': 'gsdg'})
+    list_contacts = Chats.objects.filter(id_user = request.user.id).order_by("-date")
+
+    context = {
+        'main': 'on',
+        'list_contacts': list_contacts,
+        'id_chat': id,
+        'id_user': request.user.id
+    }
+
+    return render(request, 'messenger/html/index.html', context)

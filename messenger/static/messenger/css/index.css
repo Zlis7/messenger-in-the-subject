@@ -4,6 +4,14 @@
     padding: 0;
 }
 
+#on{
+    display:flex;
+}
+
+#off{
+    display: none;
+}
+
 body {
     background-color: rgb(24,28,32);
     display: flex;
@@ -30,7 +38,7 @@ body {
     gap: 25px;
 }
 
-.menu div{
+.menu a{
     width: 100px;
     height: 70px;
     display: flex;
@@ -39,9 +47,9 @@ body {
     border-right: 2px solid rgb(74,84,92);
 }
 
-.menu div:hover{
-     background-color: rgb(59,59,59);
-     border-right: 2px solid rgb(255,255,255);
+.menu a:hover{
+    background-color: rgb(59,59,59);
+    border-right: 2px solid rgb(255,255,255);
 }
 
 .settings{
@@ -98,12 +106,11 @@ body {
     height:70px;
     position:relative;
     border-bottom: 1px solid rgb(74,84,92);
-    cursor: pointer;
+    text-decoration: none;
 }
 
-
 .item-contact:hover{
-     border-bottom: 1px solid rgb(180,171,171);
+    border-bottom: 1px solid rgb(180,171,171);
 }
 
 .img-item-contact{

@@ -22,8 +22,9 @@ class MinUserManager(BaseUserManager):
         return self.get(email=email)
 
 class MinUser(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=257)
+    username = models.CharField(max_length=58, default='-')
+    email = models.CharField(unique=True, max_length=68)
+    password = models.CharField(max_length=258)
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)

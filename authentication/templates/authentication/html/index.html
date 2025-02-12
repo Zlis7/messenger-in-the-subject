@@ -9,7 +9,11 @@
             <title>Messenger</title>
     </head>
     <body>
-            <div class="block-form">
+                {% if is_login %}
+                    <div class="block-form">
+                {% else %}
+                    <div class="block-form" id="registration">
+                {% endif %}
 
                 {% if is_login %}
                     <form method="POST" action={% url 'login' %}>
@@ -27,6 +31,8 @@
                     {% if is_login %}
                         <button type="submit">Войти</button>
                     {% else %}
+                        <label for="trust_registration">Регистрация без проверки:</label>
+                        <input type="checkbox" name="trust_registration" id="trust_registration_checkbox"/>
                         <button type="submit">Зарегистрироваться</button>
                     {% endif %}
                 </form>
@@ -39,6 +45,30 @@
                     {% endif %}
                 </div>
             </div>
+
+            {% if not is_login %}
+                 <script defer>
+                        document.getElementById('trust_registration_checkbox').addEventListener('change', (event) => {
+                            const checkbox = event.target;
+                            const targetDiv = document.getElementById('is-checkbox');
+                            if (checkbox.checked) {
+                                targetDiv.style.display = 'block';
+                            } else {
+                                targetDiv.style.display = 'none';
+                            }
+                        });
+                 </script>
+            {% endif %}
+
+            <div class="message" style="display:none;" id="is-checkbox">
+                <p>Регистрация без проверки означает, что вы получите доступ к системе только с помощью администратора.</p>
+            </div>
+
+            {% if message  != '' %}
+                <div class="message">
+                    <p>{{message}}</p>
+                </div>
+            {% endif %}
 
     </body>
 </html>

@@ -8,8 +8,22 @@ body {
     background-color: rgb(24,28,32);
     display: flex;
     justify-content: center;
+    flex-direction:column;
     align-items: center;
     height: 100vh;
+}
+
+#registration{
+    height: 360px;
+}
+
+#trust_registration_checkbox{
+    width: 30px;
+}
+
+#is-checkbox{
+    height: 70px;
+    white-space: wrap;
 }
 
 .block-form{
@@ -21,13 +35,12 @@ body {
     padding: 10px;
     padding-left: 20px;
     width: 350px;
-    height: 250px;
-    gap: 20px;
+    height: 300px;
+    gap: 25px;
 }
 
 .block-form label{
     color: rgb(231,231,231);
-    margin-bottom: 5px;
     font-size:25px;
 }
 
@@ -38,7 +51,8 @@ body {
     background-color: rgb(74,84,92);
     border: none;
     outline: none;
-    margin-bottom: 10px;
+    margin-top: 13px;
+    margin-bottom: 15px;
 }
 
 .block-form button{
@@ -55,8 +69,24 @@ body {
 .block-form button:hover{
      background-color: rgb(59,59,59);
      border: 2px solid rgb(255,255,255);
+     color: rgb(231,231,231);
 }
 
 .block-form a{
     color: rgb(231,231,231);
+}
+
+.message{
+    background-color: rgb(74,84,92);
+    color: rgb(231,231,231);
+    border-radius: 20px;
+    padding-left: 20px;
+    width: 350px;
+    height: 30px;
+    align-content: center;
+    margin-top: 10px;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

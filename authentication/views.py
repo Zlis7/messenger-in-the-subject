@@ -33,7 +33,6 @@ def login(request):
         hash.update(bytes(email, 'utf-8'))
 
         user = authenticate(email=hash.hexdigest(), password=password)
-        message = ''
 
         if user is not None:
             if not user.is_blocked:
@@ -81,7 +80,7 @@ def registration(request):
                 pass
                 #send_mail(
                  #       subject="Подтверждение почты",
-                 #       message=f"Вы зарегистрировались в социальной сети «В теме».\nПерейдите по ссылке, чтобы подтвердить регистрацию, если вы не регистрировались не переходите по ссылке:\nhttp://127.0.0.1:8000/auth/register_confirm/{hash.hexdigest()}",
+                 #       message=f"Вы зарегистрировались в социальной сети «В теме».\nПерейдите по ссылке, чтобы подтвердить регистрацию, если вы не регистрировались не переходите по ссылке:\nhttp://127.0.0.1:8000/auth/register_confirm/{user.email}",
                  #       from_email="in.the.subject.574@yandex.ru",
                   #      recipient_list=(email,),
                   #      fail_silently=False

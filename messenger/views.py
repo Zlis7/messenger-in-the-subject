@@ -15,20 +15,25 @@ def index(request):
             else:
                 return redirect(reverse('home-chat'), permanent=True)
 
-        list_contacts = reversed(Chat.objects.filter(email_user = request.user.email))
-        unique_list_contacts = []
-        temp_id_chat = []
+        list_contacts = Chat.objects.filter(email_user = request.user.email)
+        unique_id_chats = []
 
-        for chat in list_contacts:
-            if chat.id_chat not in temp_id_chat:
-                unique_list_contacts.append(chat)
-                temp_id_chat.append(chat.id_chat)
+        for i in list_contacts:
+            if i.id_chat not in unique_id_chats:
+                unique_id_chats.append(i.id_chat)
+
+        list_contacts = []
+
+        for i in unique_id_chats:
+            objects = Chat.objects.filter(id_chat = i)
+            list_contacts.append(objects[len(objects) - 1])
 
         context = {
             'main': 'off',
-            'list_contacts': unique_list_contacts,
+            'list_contacts': list_contacts,
             'is_open_settings': open_settings,
-            'user_name': request.user.username
+            'user_name': request.user.username,
+            'UID': request.user.email[27:31]
         }
 
         return render(request, 'messenger/html/index.html', context)
@@ -47,13 +52,45 @@ def index(request):
 @login_required
 def chat(request, id):
     if request.method == 'GET':
-        list_contacts = Chat.objects.filter(id_chat = id).order_by("-date")
+        open_settings = 'off'
+
+        if 'settings' in request.GET:
+            if request.GET['settings'] == 'on':
+                open_settings = 'on'
+            else:
+                return redirect(reverse('home-chat'), permanent=True)
+
+        list_contacts = Chat.objects.filter(email_user=request.user.email)
+        unique_id_chats = []
+
+        for i in list_contacts:
+            if i.id_chat not in unique_id_chats:
+                unique_id_chats.append(i.id_chat)
+
+        list_contacts = []
+
+        for i in unique_id_chats:
+            objects = Chat.objects.filter(id_chat=i)
+            list_contacts.append(objects[len(objects) - 1])
+
+        history_messenger = Chat.objects.filter(id_chat=id)
+        chat_name = ''
+
+        try:
+            chat_name = history_messenger[len(history_messenger) - 1].name_chat
+        except ValueError:
+            chat_name = 'Пусто'
 
         context = {
-            'main': 'on',
+            'main': 'on' if open_settings != 'on' else 'off',
             'list_contacts': list_contacts,
+            'is_open_settings': open_settings,
+            'history_messenger': history_messenger,
             'id_chat': id,
-            'email_user': request.user.email
+            'chat_name': chat_name,
+            'current_email_user': request.user.email,
+            'user_name': request.user.username,
+            'UID': request.user.email[27:31]
         }
 
         return render(request, 'messenger/html/index.html', context)

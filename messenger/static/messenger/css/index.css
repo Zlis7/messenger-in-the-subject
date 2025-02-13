@@ -316,3 +316,7 @@ main{
     margin-left: 5px;
     color: rgb(231,231,231);
 }
+
+#label-uid{
+    margin-bottom: 15px;
+}

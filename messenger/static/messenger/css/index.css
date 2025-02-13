@@ -4,6 +4,14 @@
     padding: 0;
 }
 
+#on{
+    display:flex;
+}
+
+#off{
+    display: none;
+}
+
 body {
     background-color: rgb(24,28,32);
     display: flex;
@@ -30,7 +38,7 @@ body {
     gap: 25px;
 }
 
-.menu div{
+.menu a{
     width: 100px;
     height: 70px;
     display: flex;
@@ -39,9 +47,9 @@ body {
     border-right: 2px solid rgb(74,84,92);
 }
 
-.menu div:hover{
-     background-color: rgb(59,59,59);
-     border-right: 2px solid rgb(255,255,255);
+.menu a:hover{
+    background-color: rgb(59,59,59);
+    border-right: 2px solid rgb(255,255,255);
 }
 
 .settings{
@@ -54,8 +62,8 @@ body {
     justify-content: center;
     flex-direction:column;
     width: 45vh;
-    height: 95%;
-    gap:25px;
+    height: 97%;
+    gap:20px;
 }
 
 .search{
@@ -90,7 +98,7 @@ body {
 }
 
 .all-users-contacts::-webkit-scrollbar {
-  width: 0;
+    width: 0;
 }
 
 .item-contact{
@@ -98,12 +106,11 @@ body {
     height:70px;
     position:relative;
     border-bottom: 1px solid rgb(74,84,92);
-    cursor: pointer;
+    text-decoration: none;
 }
 
-
 .item-contact:hover{
-     border-bottom: 1px solid rgb(180,171,171);
+    border-bottom: 1px solid rgb(180,171,171);
 }
 
 .img-item-contact{
@@ -111,6 +118,7 @@ body {
 }
 
 .preview{
+    max-width: 300px;
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -119,7 +127,7 @@ body {
     padding-bottom: 7px;
     font-size: 17px;
     gap: 2px;
-
+    overflow: hidden;
 }
 
 .contact-name{
@@ -143,7 +151,7 @@ body {
 .date-message{
     position:absolute;
     right: 1px;
-    bottom: 25px;
+    bottom: 15px;
     color: rgb(143,160,175);
 }
 
@@ -256,4 +264,55 @@ main{
     color:rgb(255,255,255);
 }
 
+.block-form{
+    background-color: rgb(74,84,92);
+    border-radius: 20px;
+    padding: 10px;
+    padding-left: 20px;
+    width: 220px;
+    height: 300px;
+}
 
+.block-form form{
+    display: flex;
+    flex-direction: column;
+}
+
+.block-form label{
+    color: rgb(231,231,231);
+    font-size:25px;
+}
+
+.block-form input{
+    width: 100%;
+    font-size:22px;
+    color:rgb(231,231,231);
+    background-color: rgb(74,84,92);
+    border: none;
+    outline: none;
+    margin-top: 13px;
+    margin-bottom: 15px;
+}
+
+.block-form button{
+    margin-top:10px;
+    color: rgb(124,124,124);
+    border: 2px solid rgb(74,84,92);;
+    background-color: rgb(59,59,59);
+    cursor: pointer;
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.block-form button:hover{
+    background-color: rgb(59,59,59);
+    border: 2px solid rgb(255,255,255);
+    color: rgb(231,231,231);
+}
+
+.block-form a{
+    margin-top: 15px;
+    margin-left: 5px;
+    color: rgb(231,231,231);
+}

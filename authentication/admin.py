@@ -5,7 +5,7 @@ from .models import MinUser
 class CustomUserAdmin(UserAdmin):
     model = MinUser
     list_display = ['email', 'username', 'is_active', 'is_staff', 'is_superuser', 'is_blocked']
-    list_filter = ['is_active', 'is_staff', 'is_superuser', 'is_blocked']
+    list_filter = ['is_active', 'is_staff', 'is_superuser', 'is_blocked', 'last_login']
     search_fields = ['email', 'username']
     ordering = ['email']
 

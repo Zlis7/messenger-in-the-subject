@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,14 +9,15 @@
         <title>Messenger</title>
     </head>
     <body>
+
         <aside class="menu">
             <nav>
-                <div><a href="#"><img src={% static "messenger/images/home.svg" %}/></a></div>
-                <div><a href="#"><img src={% static "messenger/images/chat.svg" %}/></a></div>
+                <a href="#"><img src={% static "messenger/images/home.svg" %}/></a>
+                <a href="#"><img src={% static "messenger/images/chat.svg" %}/></a>
             </nav>
 
             <div class="settings">
-                <a href="#"><img src={% static "messenger/images/settings.svg" %} /></a>
+                <a href='?settings=on'><img src={% static "messenger/images/settings.svg" %} /></a>
             </div>
         </aside>
 
@@ -27,267 +28,85 @@
             </div>
 
             <nav class="all-users-contacts">
+                {% for i in list_contacts %}
+                    <a href="#" class="item-contact">
+                        <div class="img-item-contact">
+                            <img src={% static "messenger/images/avatar.svg" %}/>
+                            <img class="status-message" src={% static "messenger/images/new_message.svg" %}/>
+                        </div>
+                        <div class="preview">
+                            <p class="contact-name">{{i.email_user}}</p>
+                            <p class="contact-last-message">{{i.message}}</p>
+                        </div>
 
-                <div class="item-contact">
-                    <div class="img-item-contact">
-                        <img src={% static "messenger/images/avatar.svg" %}/>
-                        <img class="status-message" src={% static "messenger/images/new_message.svg" %}/>
-                    </div>
-                    <div class="preview">
-                        <p class="contact-name">Денис</p>
-                        <p class="contact-last-message">Всем приветеееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееее</p>
-                    </div>
-
-                    <div class="date-message">
-                        <p>04-02-2025</p>
-                    </div>
-
-                </div>
-
-                <div class="item-contact">
-                    <div class="img-item-contact">
-                        <img src={% static "messenger/images/avatar.svg" %}/>
-                        <img class="status-message" src={% static "messenger/images/no_new_messages.svg" %}/>
-                    </div>
-
-                    <div class="preview">
-                        <p class="contact-name">Данил</p>
-                        <p class="contact-last-message">Я бездарность</p>
-                    </div>
-
-                    <div class="date-message">
-                        <p>04-02-2025</p>
-                    </div>
-
-                </div>
-
-                <div class="item-contact">
-                    <div class="img-item-contact">
-                        <img src={% static "messenger/images/avatar.svg" %}/>
-                        <img class="status-message" src={% static "messenger/images/new_message.svg" %}/>
-                    </div>
-                    <div class="preview">
-                        <p class="contact-name">Денис</p>
-                        <p class="contact-last-message">Всем приветеееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееее</p>
-                    </div>
-
-                    <div class="date-message">
-                        <p>04-02-2025</p>
-                    </div>
-
-                </div>
-
-                <div class="item-contact">
-                    <div class="img-item-contact">
-                        <img src={% static "messenger/images/avatar.svg" %}/>
-                        <img class="status-message" src={% static "messenger/images/no_new_messages.svg" %}/>
-                    </div>
-
-                    <div class="preview">
-                        <p class="contact-name">Данил</p>
-                        <p class="contact-last-message">Я бездарность</p>
-                    </div>
-
-                    <div class="date-message">
-                        <p>04-02-2025</p>
-                    </div>
-
-                </div>
-
-                <div class="item-contact">
-                    <div class="img-item-contact">
-                        <img src={% static "messenger/images/avatar.svg" %}/>
-                        <img class="status-message" src={% static "messenger/images/new_message.svg" %}/>
-                    </div>
-                    <div class="preview">
-                        <p class="contact-name">Денис</p>
-                        <p class="contact-last-message">Всем приветеееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееее</p>
-                    </div>
-
-                    <div class="date-message">
-                        <p>04-02-2025</p>
-                    </div>
-
-                </div>
-
-                <div class="item-contact">
-                    <div class="img-item-contact">
-                        <img src={% static "messenger/images/avatar.svg" %}/>
-                        <img class="status-message" src={% static "messenger/images/no_new_messages.svg" %}/>
-                    </div>
-
-                    <div class="preview">
-                        <p class="contact-name">Данил</p>
-                        <p class="contact-last-message">Я бездарность</p>
-                    </div>
-
-                    <div class="date-message">
-                        <p>04-02-2025</p>
-                    </div>
-
-                </div>
-
-                <div class="item-contact">
-                    <div class="img-item-contact">
-                        <img src={% static "messenger/images/avatar.svg" %}/>
-                        <img class="status-message" src={% static "messenger/images/new_message.svg" %}/>
-                    </div>
-                    <div class="preview">
-                        <p class="contact-name">Денис</p>
-                        <p class="contact-last-message">Всем приветеееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееее</p>
-                    </div>
-
-                    <div class="date-message">
-                        <p>04-02-2025</p>
-                    </div>
-
-                </div>
-
-                <div class="item-contact">
-                    <div class="img-item-contact">
-                        <img src={% static "messenger/images/avatar.svg" %}/>
-                        <img class="status-message" src={% static "messenger/images/no_new_messages.svg" %}/>
-                    </div>
-
-                    <div class="preview">
-                        <p class="contact-name">Данил</p>
-                        <p class="contact-last-message">Я бездарность</p>
-                    </div>
-
-                    <div class="date-message">
-                        <p>04-02-2025</p>
-                    </div>
-
-                </div>
-
-                <div class="item-contact">
-                    <div class="img-item-contact">
-                        <img src={% static "messenger/images/avatar.svg" %}/>
-                        <img class="status-message" src={% static "messenger/images/new_message.svg" %}/>
-                    </div>
-                    <div class="preview">
-                        <p class="contact-name">Денис</p>
-                        <p class="contact-last-message">Всем приветеееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееееее</p>
-                    </div>
-
-                    <div class="date-message">
-                        <p>04-02-2025</p>
-                    </div>
-
-                </div>
-
-                <div class="item-contact">
-                    <div class="img-item-contact">
-                        <img src={% static "messenger/images/avatar.svg" %}/>
-                        <img class="status-message" src={% static "messenger/images/no_new_messages.svg" %}/>
-                    </div>
-
-                    <div class="preview">
-                        <p class="contact-name">Данил</p>
-                        <p class="contact-last-message">Я бездарность</p>
-                    </div>
-
-                    <div class="date-message">
-                        <p>04-02-2025</p>
-                    </div>
-
-                </div>
-
+                        <div class="date-message">
+                            <p>{{i.date}}</p>
+                        </div>
+                    </a>
+                {% endfor %}
             </nav>
         </aside>
 
-        <main>
-            <div class="header-contact">
-                <div>
-                    <img src={% static "messenger/images/avatar.svg" %}/>
+        {%if is_open_settings == 'on' %}
+            <main>
+                <div class="block-form">
+                    <form method="POST" action={% url 'home-chat' %}>
+                        {% csrf_token %}
+
+                        <label for="username">Ваш псевдоним:</label>
+                        <input type="text" name="username" placeholder={{user_name}} required />
+                        <input type='hidden' name='settings' value='on' />
+                        <button type="submit">Подтвердить</button>
+                        <a href='?settings=off'>Свернуть настройки</a>
+                    </form>
                 </div>
+            </main>
 
-                <div class="header-info">
-                    <p class="contact-name">Денис</p>
-                    <p class="logout-date">04-02-2025</p>
-                </div>
+        {% else %}
 
-                <div class="settings-contact">
-                    <img src={% static "messenger/images/settings-contact.svg" %}/>
-                </div>
-            </div>
-
-            <div class="content-contact">
-
-                <div class="message">
-                    <div class="message-area" id="output">
-                        <p class="message-content">L</p>
+            <main id = {{main}}>
+                <div class="header-contact">
+                    <div>
+                        <img src={% static "messenger/images/avatar.svg" %}/>
                     </div>
-                    <div class="message-dot">
-                        <img  src={% static "messenger/images/dot.svg" %} />
-                    </div>
-                </div>
 
-                <div class="message">
-                    <div class="message-area" id="output">
-                        <p class="message-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo eius error dolor, dolorem recusandae dolorum distinctio delectus magnam quisquam voluptate aperiam iure temporibus, corrupti eveniet at culpa iste sapiente omnis!</p>
+                    <div class="header-info">
+                        <p class="contact-name">Денис</p>
+                        <p class="logout-date">04-02-2025</p>
                     </div>
-                    <div class="message-dot">
-                        <img  src={% static "messenger/images/dot.svg" %} />
+
+                    <div class="settings-contact">
+                        <img src={% static "messenger/images/settings-contact.svg" %}/>
                     </div>
                 </div>
 
-                <div class="message">
-                    <div class="message-area" id="output">
-                        <p class="message-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo eius error dolor, dolorem recusandae dolorum distinctio delectus magnam quisquam voluptate aperiam iure temporibus, corrupti eveniet at culpa iste sapiente omnis!</p>
-                    </div>
-                    <div class="message-dot">
-                        <img  src={% static "messenger/images/dot.svg" %} />
-                    </div>
-                </div>
+                <div class="content-contact">
 
-                <div class="message">
-                    <div class="message-area" id="output">
-                        <p class="message-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo eius error dolor, dolorem recusandae dolorum distinctio delectus magnam quisquam voluptate aperiam iure temporibus, corrupti eveniet at culpa iste sapiente omnis!</p>
-                    </div>
-                    <div class="message-dot">
-                        <img  src={% static "messenger/images/dot.svg" %} />
-                    </div>
-                </div>
+                    {% for i in list_contacts%}
 
-                <div class="message">
-                    <div class="message-area" id="output">
-                        <p class="message-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo eius error dolor, dolorem recusandae dolorum distinctio delectus magnam quisquam voluptate aperiam iure temporibus, corrupti eveniet at culpa iste sapiente omnis!</p>
-                    </div>
-                    <div class="message-dot">
-                        <img  src={% static "messenger/images/dot.svg" %} />
-                    </div>
-                </div>
+                    {% endfor %}
+                    
+                        <div class="message">
+                            <div class="message-area" id="output">
+                                <p class="message-content">i.message</p>
+                            </div>
+                            <div class="message-dot">
+                                <img  src={% static "messenger/images/dot.svg" %} />
+                            </div>
+                        </div>
                 
-                <div class="message">
-                    <div class="message-area" id="output">
-                        <p class="message-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo eius error dolor, dolorem recusandae dolorum distinctio delectus magnam quisquam voluptate aperiam iure temporibus, corrupti eveniet at culpa iste sapiente omnis!</p>
-                    </div>
-                    <div class="message-dot">
-                        <img  src={% static "messenger/images/dot.svg" %} />
-                    </div>
                 </div>
 
-                <div class="message">
-                    <div class="message-area" id="output">
-                        <p class="message-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo eius error dolor, dolorem recusandae dolorum distinctio delectus magnam quisquam voluptate aperiam iure temporibus, corrupti eveniet at culpa iste sapiente omnis!</p>
+                <div class="input-contact">
+                    <div>
+                        <img src={% static "messenger/images/clip.svg" %}/>
+                        <input placeholder="Messange">
                     </div>
-                    <div class="message-dot">
-                        <img  src={% static "messenger/images/dot.svg" %} />
-                    </div>
+                    <img class="dot-input-contact" src={% static "messenger/images/dot.svg" %}/>
                 </div>
 
-            </div>
-
-            <div class="input-contact">
-                <div>
-                    <img src={% static "messenger/images/clip.svg" %}/>
-                    <input placeholder="Messange">
-                </div>
-                <img class="dot-input-contact" src={% static "messenger/images/dot.svg" %}/>
-            </div>
-
-        </main>
-
+            </main>
+        {% endif %}
+        
     </body>
 </html>

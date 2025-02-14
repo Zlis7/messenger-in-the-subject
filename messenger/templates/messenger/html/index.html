@@ -24,12 +24,12 @@
         <aside class="contacts">
             <div class="search">
                 <img src={% static "messenger/images/search.svg" %} />
-                <input type="text" placeholder="Search">
+                <input type="text" placeholder="Search" onkeydown="search(this)">
             </div>
 
             <nav class="all-users-contacts">
                 {% for i in list_contacts %}
-                    <a href={{i.id_chat}} class="item-contact">
+                    <div class="item-contact" onclick="open_chat({{i.id_chat}})">
                         <div class="img-item-contact">
                             <img src={% static "messenger/images/avatar.svg" %}/>
                             <img class="status-message" src={% static "messenger/images/new_message.svg" %}/>
@@ -42,7 +42,7 @@
                         <div class="date-message">
                             <p>{{i.date}}</p>
                         </div>
-                    </a>
+                    </div>
                 {% endfor %}
             </nav>
         </aside>
@@ -50,7 +50,7 @@
         {%if is_open_settings == 'on' %}
             <main>
                 <div class="block-form">
-                    <form method="POST" action={% url 'home-chat' %}>
+                    <form method="POST" action={% url 'chat' %}>
                         {% csrf_token %}
 
                         <label id="label-uid"> Ваш UID: {{UID}}</label>
@@ -73,7 +73,7 @@
 
                     <div class="header-info">
                         <p class="contact-name">{{chat_name}}</p>
-                        <p class="logout-date">04-02-2025</p>
+                        <p class="logout-date">{{last_message_date}}</p>
                     </div>
 
                     <div class="settings-contact">
@@ -89,6 +89,7 @@
                             {% else %}
                                 <div class="message-area" id="output">
                             {% endif %}
+                                    <p class="message-author">[{{i.date}}] {{i.name_user}}@{{i.uid}}</p>
                                     <p class="message-content">{{i.message}}</p>
                                 </div>
                             <div class="message-dot">
@@ -105,13 +106,43 @@
                 <div class="input-contact">
                     <div>
                         <img src={% static "messenger/images/clip.svg" %}/>
-                        <input placeholder="Messange">
                     </div>
-                    <img class="dot-input-contact" src={% static "messenger/images/dot.svg" %}/>
+
+                    <form method="POST" action={% url 'chat' %}>
+                        {% csrf_token %}
+                        <input placeholder="Messange" name="content-messenger" >
+                        <input type="hidden" value={{id_chat}} name="id">
+                        <button type="submit" class="button-submi-input-message">
+                            <img src={% static "messenger/images/send.svg" %}/>
+                        </button>
+                    </form>
+
+                    <div>
+                        <img class="dot-input-contact" src={% static "messenger/images/dot.svg" %}/>
+                    </div>
                 </div>
 
             </main>
         {% endif %}
+
+
+        <script defer>
+            function search(input) {
+                if(event.key === 'Enter') {
+                    window.location.href = `?id=${input.value}`     
+                }
+            }
+
+            function open_chat(id_chat){
+                window.location.href = `?id=${id_chat}`
+            }
+
+            window.onload = function() {
+                const container = document.querySelector('.content-contact');
+                container.scrollTop = container.scrollHeight;
+            };
+
+        </script>
         
     </body>
 </html>

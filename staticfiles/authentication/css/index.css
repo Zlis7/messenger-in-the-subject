@@ -1,0 +1,98 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgb(24,28,32);
+    display: flex;
+    justify-content: center;
+    flex-direction:column;
+    align-items: center;
+    height: 100vh;
+}
+
+.registration{
+    height: 360px;
+}
+
+.trust_registration_checkbox{
+    width: 30px;
+}
+
+.is-checkbox{
+    height: 70px;
+    white-space: wrap;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgb(74,84,92);
+    border-radius: 20px;
+    padding: 10px;
+    padding-left: 20px;
+    width: 350px;
+    height: 300px;
+    gap: 25px;
+}
+
+main label{
+    color: rgb(231,231,231);
+    font-size:25px;
+}
+
+main input{
+    width: 100%;
+    font-size:22px;
+    color:rgb(124,124,124);
+    background-color: rgb(74,84,92);
+    border: none;
+    outline: none;
+    margin-top: 13px;
+    margin-bottom: 15px;
+}
+
+main button{
+    margin-top:10px;
+    color: rgb(124,124,124);
+    border: 2px solid rgb(74,84,92);;
+    background-color: rgb(59,59,59);
+    cursor: pointer;
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+main button:hover{
+     background-color: rgb(59,59,59);
+     border: 2px solid rgb(255,255,255);
+     color: rgb(231,231,231);
+}
+
+main a{
+    color: rgb(231,231,231);
+}
+
+.message{
+    background-color: rgb(74,84,92);
+    color: rgb(231,231,231);
+    border-radius: 20px;
+    border: 1px solid white;
+    padding: 5px;
+    padding-left: 20px;
+    width: 350px;
+    min-height: 50px;
+    max-height: 80px;
+    align-content: center;
+    margin-top: 10px;
+    font-size: 15px;
+    overflow: hidden;
+}
+
+.for-register{
+    display:none;
+    margin-bottom:15px;
+}

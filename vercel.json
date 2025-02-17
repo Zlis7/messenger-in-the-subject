@@ -1,8 +1,19 @@
 {
+  "builds": [
+       {
+         "src": "your_django_project/wsgi.py",
+         "use": "@vercel/python"
+       }
+     ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "api/wsgi.py"
-    }
+     {
+         "src": "/static/(.*)",
+         "dest": "/static/$1"
+       },
+
+       {
+         "src": "/(.*)",
+         "dest": "your_django_project/wsgi.py"
+       }
   ]
 }

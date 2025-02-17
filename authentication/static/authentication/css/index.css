@@ -13,20 +13,20 @@ body {
     height: 100vh;
 }
 
-#registration{
+.registration{
     height: 360px;
 }
 
-#trust_registration_checkbox{
+.trust_registration_checkbox{
     width: 30px;
 }
 
-#is-checkbox{
+.is-checkbox{
     height: 70px;
     white-space: wrap;
 }
 
-.block-form{
+main{
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -39,12 +39,12 @@ body {
     gap: 25px;
 }
 
-.block-form label{
+main label{
     color: rgb(231,231,231);
     font-size:25px;
 }
 
-.block-form input{
+main input{
     width: 100%;
     font-size:22px;
     color:rgb(124,124,124);
@@ -55,7 +55,7 @@ body {
     margin-bottom: 15px;
 }
 
-.block-form button{
+main button{
     margin-top:10px;
     color: rgb(124,124,124);
     border: 2px solid rgb(74,84,92);;
@@ -66,13 +66,13 @@ body {
     border-radius: 5px;
 }
 
-.block-form button:hover{
+main button:hover{
      background-color: rgb(59,59,59);
      border: 2px solid rgb(255,255,255);
      color: rgb(231,231,231);
 }
 
-.block-form a{
+main a{
     color: rgb(231,231,231);
 }
 
@@ -80,13 +80,19 @@ body {
     background-color: rgb(74,84,92);
     color: rgb(231,231,231);
     border-radius: 20px;
+    border: 1px solid white;
+    padding: 5px;
     padding-left: 20px;
     width: 350px;
-    height: 30px;
+    min-height: 50px;
+    max-height: 80px;
     align-content: center;
     margin-top: 10px;
-    font-size: 13px;
-    white-space: nowrap;
+    font-size: 15px;
     overflow: hidden;
-    text-overflow: ellipsis;
+}
+
+.for-register{
+    display:none;
+    margin-bottom:15px;
 }

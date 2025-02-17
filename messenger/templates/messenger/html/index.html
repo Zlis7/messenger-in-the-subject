@@ -1,42 +1,45 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href={% static "messenger/css/index.css" %}>
+        <script src={% static "messenger/js/index.js" %} defer></script>
         <title>Messenger</title>
     </head>
     <body>
-
         <aside class="menu">
             <nav>
-                <a href="#"><img src={% static "messenger/images/home.svg" %}/></a>
-                <a href="#"><img src={% static "messenger/images/chat.svg" %}/></a>
+                <a href="#" class="menu-close-main"><img src={% static "messenger/images/home.svg" %}/></a>
+                <a href="#" class="reload-page"><img src={% static "messenger/images/chat.svg" %}/></a>
             </nav>
 
             <div class="settings">
-                <a href='?settings=on'><img src={% static "messenger/images/settings.svg" %} /></a>
+                <a href='#' class="open-settings"><img src={% static "messenger/images/settings.svg" %} /></a>
             </div>
         </aside>
 
         <aside class="contacts">
             <div class="search">
                 <img src={% static "messenger/images/search.svg" %} />
-                <input type="text" placeholder="Search" onkeydown="search(this)">
+                <form method="GET" class="search-form">
+                    <input type="text" placeholder="Search" maxlength="9" required/>
+                </form>
+
             </div>
 
             <nav class="all-users-contacts">
                 {% for i in list_contacts %}
-                    <div class="item-contact" onclick="open_chat({{i.id_chat}})">
+                    <div class="item-contact" id={{i.id_chat}}>
                         <div class="img-item-contact">
                             <img src={% static "messenger/images/avatar.svg" %}/>
                             <img class="status-message" src={% static "messenger/images/new_message.svg" %}/>
                         </div>
                         <div class="preview">
                             <p class="contact-name">{{i.name_chat}}</p>
-                            <p class="contact-last-message">{{i.message}}</p>
+                            <p class="contact-last-message">{{i.content_message}}</p>
                         </div>
 
                         <div class="date-message">
@@ -47,26 +50,21 @@
             </nav>
         </aside>
 
-        {%if is_open_settings == 'on' %}
-            <main>
-                <div class="block-form">
-                    <form method="POST" action={% url 'chat' %}>
-                        {% csrf_token %}
+        <main>
+            <div class="main-settings">
+                <form method="POST" action={% url 'index_messenger' %}>
+                    {% csrf_token %}
 
-                        <label id="label-uid"> Ваш UID: {{UID}}</label>
-                        <label for="username">Ваш псевдоним:</label>
-                        <input type="text" name="username" placeholder={{user_name}} required />
-                        <input type='hidden' name='settings' value='on' />
-                        <button type="submit">Изменить псевдоним</button>
-                        <a href='?settings=off'>Свернуть настройки</a>
-                    </form>
-                </div>
-            </main>
+                    <label id="label-uid"> Ваш UID: {{UID}}</label>
+                    <label for="username">Ваш псевдоним:</label>
+                    <input type="text" name="value_set_username" minlength="5" maxlength="20" pattern="^[a-zA-Z]+$"  placeholder={{username}}  required/>
+                    <button type="submit">Изменить псевдоним</button>
+                    <a href='#' class="close-settings">Свернуть настройки</a>
+                </form>
+            </div>
 
-        {% else %}
-
-            <main id = {{main}}>
-                <div class="header-contact">
+            <div class="main-chat">
+                 <div class="header-contact">
                     <div>
                         <img src={% static "messenger/images/avatar.svg" %}/>
                     </div>
@@ -84,16 +82,16 @@
                 <div class="content-contact">
                     {% for i in history_messenger%}
                         <div class="message">
-                            {% if i.email_user != current_email_user %}
+                            {% if i.uid != UID %}
                                 <div class="message-area" id="input">
                             {% else %}
                                 <div class="message-area" id="output">
                             {% endif %}
-                                    <p class="message-author">[{{i.date}}] {{i.name_user}}@{{i.uid}}</p>
-                                    <p class="message-content">{{i.message}}</p>
+                                    <p class="message-author">[{{i.date}}] @{{i.uid}}</p>
+                                    <p class="message-content">{{i.content_message}}</p>
                                 </div>
                             <div class="message-dot">
-                                {% if i.email_user != current_email_user %}
+                                {% if i.uid != UID %}
                                     <img src={% static "messenger/images/dot-white.svg" %} />
                                 {% else %}
                                     <img src={% static "messenger/images/dot.svg" %} />
@@ -104,15 +102,11 @@
                 </div>
 
                 <div class="input-contact">
-                    <div>
-                        <img src={% static "messenger/images/clip.svg" %}/>
-                    </div>
-
-                    <form method="POST" action={% url 'chat' %}>
+                    <form method="POST" action={% url 'index_messenger' %}>
                         {% csrf_token %}
-                        <input placeholder="Messange" name="content-messenger" >
-                        <input type="hidden" value={{id_chat}} name="id">
-                        <button type="submit" class="button-submi-input-message">
+                        <input placeholder="Message" type="text" maxlength="498" name="content-message" required/>
+                        <input class="id-chat" name="id" type="hidden" value={{id_chat}} />
+                        <button type="submit" class="button-submit-input-message">
                             <img src={% static "messenger/images/send.svg" %}/>
                         </button>
                     </form>
@@ -121,28 +115,7 @@
                         <img class="dot-input-contact" src={% static "messenger/images/dot.svg" %}/>
                     </div>
                 </div>
-
-            </main>
-        {% endif %}
-
-
-        <script defer>
-            function search(input) {
-                if(event.key === 'Enter') {
-                    window.location.href = `?id=${input.value}`     
-                }
-            }
-
-            function open_chat(id_chat){
-                window.location.href = `?id=${id_chat}`
-            }
-
-            window.onload = function() {
-                const container = document.querySelector('.content-contact');
-                container.scrollTop = container.scrollHeight;
-            };
-
-        </script>
-        
+            </div>
+        </main>
     </body>
 </html>

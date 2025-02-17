@@ -3,72 +3,39 @@
 <!DOCTYPE html>
 <html lang="ru">
     <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" href={% static "authentication/css/index.css" %}>
-            <title>Messenger</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href={% static "authentication/css/index.css" %}>
+        <script src={% static "authentication/js/index.js" %} defer></script>
+        <title>Messenger</title>
     </head>
     <body>
-                {% if is_login %}
-                    <div class="block-form">
-                {% else %}
-                    <div class="block-form" id="registration">
-                {% endif %}
+        <main>
+            <form method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="act" value="login" class="act-form" />
 
-                {% if is_login %}
-                    <form method="POST" action={% url 'login' %}>
-                {% else %}
-                    <form method="POST" action={% url 'registration' %}>
-                {% endif %}
+                <label for="email">Почта:</label>
+                <input id="email" type="email" name="email" placeholder="..." required />
+                <label for="password">Пароль:</label>
+                <input type="password" name="password" minlength="10" maxlength="255" placeholder="..." required />
 
-                    {% csrf_token %}
-
-                    <label for="email">Почта:</label>
-                    <input type="email" name="email" placeholder="..." required />
-                    <label for="password">Пароль:</label>
-                    <input type="password" name="password" placeholder="..." required />
-
-                    {% if is_login %}
-                        <button type="submit">Войти</button>
-                    {% else %}
-                        <label for="trust_registration">Регистрация без проверки:</label>
-                        <input type="checkbox" name="trust_registration" id="trust_registration_checkbox"/>
-                        <button type="submit">Зарегистрироваться</button>
-                    {% endif %}
-                </form>
-
-                <div>
-                    {% if is_login %}
-                         <a href={% url 'registration' %}>Регистрация</a>
-                    {% else %}
-                        <a href={% url 'login' %}>Вход</a>
-                    {% endif %}
+                <div class="for-register">
+                    <label for="trust_registration">Регистрация без проверки:</label>
+                    <input type="checkbox" name="trust_registration" class="trust_registration_checkbox"/>
                 </div>
+
+                <button type="submit" class="button-submit-form">Войти</button>
+            </form>
+
+            <div>
+                <a href="#" class="change-form">Регистрация</a>
             </div>
+        </main>
 
-            {% if not is_login %}
-                 <script defer>
-                        document.getElementById('trust_registration_checkbox').addEventListener('change', (event) => {
-                            const checkbox = event.target;
-                            const targetDiv = document.getElementById('is-checkbox');
-                            if (checkbox.checked) {
-                                targetDiv.style.display = 'block';
-                            } else {
-                                targetDiv.style.display = 'none';
-                            }
-                        });
-                 </script>
-            {% endif %}
-
-            <div class="message" style="display:none;" id="is-checkbox">
-                <p>Регистрация без проверки означает, что вы получите доступ к системе только с помощью администратора.</p>
-            </div>
-
-            {% if message  != '' %}
-                <div class="message">
-                    <p>{{message}}</p>
-                </div>
-            {% endif %}
+        <div class="message">
+            <p>{{message}}</p>
+        </div>
 
     </body>
 </html>

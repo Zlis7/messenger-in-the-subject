@@ -32,6 +32,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'api.urls'
 
+AUTHENTICATION_BACKENDS = {
+    'authentication.backend.HashEmailBackend',
+    'django.contrib.auth.backends.ModelBackend',
+}
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -84,10 +89,10 @@ STATIC_URL = 'static/'
 
 AUTH_USER_MODEL = 'authentication.MinUser'
 
-LOGIN_URL = "/auth/login"
+LOGIN_URL = "/auth"
 LOGOUT_URL = "/auth/logout"
-LOGOUT_REDIRECT_URL = "/auth/logout"
-LOGIN_REDIRECT_URL = "/auth/login"
+LOGOUT_REDIRECT_URL = "/auth"
+LOGIN_REDIRECT_URL = "/auth/logout"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -96,7 +101,6 @@ EMAIL_HOST = 'smtp.yandex.kz'
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False
-
 
 EMAIL_HOST_USER = 'in.the.subject.574@yandex.ru'
 EMAIL_HOST_PASSWORD = 'ifmqbaorgxmtprnq'

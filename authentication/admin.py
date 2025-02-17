@@ -2,24 +2,21 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import MinUser
 
+@admin.register(MinUser)
 class CustomUserAdmin(UserAdmin):
-    model = MinUser
-    list_display = ['email', 'username', 'is_active', 'is_staff', 'is_superuser', 'is_blocked']
-    list_filter = ['is_active', 'is_staff', 'is_superuser', 'is_blocked', 'last_login']
-    search_fields = ['email', 'username']
-    ordering = ['email']
+    list_display = ['uid', 'username', 'is_active', 'is_blocked']
+    list_filter = ['is_active', 'is_blocked', 'last_login']
+    search_fields = ['uid', 'username']
+    ordering = ['uid']
+
+    readonly_fields = ['uid', 'username', 'groups', 'user_permissions', 'last_login']
 
     fieldsets = (
-        (None, {'fields': ('email', 'username', 'password')}),
-        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser', 'is_blocked', 'groups', 'user_permissions')}),
+        (None, {'fields': ('uid', 'username')}),
+        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_blocked', 'groups', 'user_permissions')}),
         ('Important dates', {'fields': ('last_login',)}),
     )
 
     add_fieldsets = (
-        (None, {
-            'classes': ('wide',),
-            'fields': ('username', 'email', 'password1', 'password2', 'is_active', 'is_staff', 'is_superuser')}
-         ),
+        ('It has recently been forbidden to add users manually', {'fields':()}),
     )
-
-admin.site.register(MinUser, CustomUserAdmin)

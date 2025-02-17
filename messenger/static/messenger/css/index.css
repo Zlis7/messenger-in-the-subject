@@ -4,14 +4,6 @@
     padding: 0;
 }
 
-#on{
-    display:flex;
-}
-
-#off{
-    display: none;
-}
-
 body {
     background-color: rgb(24,28,32);
     display: flex;
@@ -77,8 +69,12 @@ body {
     gap: 5px;
 }
 
-.search input{
+.search form{
+    align-content:center;
     width: 100%;
+}
+
+.search input{
     font-size:22px;
     color:rgb(124,124,124);
     background-color: rgb(74,84,92);
@@ -157,15 +153,26 @@ body {
 
 main{
     display: flex;
-    flex-direction: column;
-    position: relative;
+    width: 100%;
+    margin-right: 25px;
+    height: 95%;
     background-color: rgb(74,84,92);
     max-width: 500px;
     border-radius: 20px;
     padding: 20px;
-    width: 100%;
-    margin-right: 25px;
-    height: 95%;
+    position: relative;
+}
+
+.main-settings, .main-chat{
+    display:none;
+}
+
+.main-chat{
+    flex-direction: column;
+}
+
+.main-chat{
+    width:100%;
 }
 
 .header-contact{
@@ -218,7 +225,7 @@ main{
     border-radius: 12px;
     padding: 10px;
     align-items: center;
-    gap:10px;
+
 }
 
 .input-contact form input{
@@ -230,6 +237,8 @@ main{
     border: none;
     color: rgb(255,255,255);
     border-radius: 12px;
+    padding-right: 30px;
+    padding-left: 10px;
 }
 
 .input-contact form button{
@@ -238,11 +247,12 @@ main{
     bottom: 30px;
     background-color: rgb(59,59,59);
     border:none;
+    cursor:pointer;
 }
 
 .input-contact form{
     display: flex;
-    height: 44px;
+    height: 45px;
     width: 100%; 
 }
 
@@ -279,7 +289,7 @@ main{
     color:rgb(255,255,255);
 }
 
-.block-form{
+.main-settings{
     background-color: rgb(74,84,92);
     border-radius: 20px;
     padding: 10px;
@@ -288,28 +298,28 @@ main{
     height: 300px;
 }
 
-.block-form form{
+.main-settings form{
     display: flex;
     flex-direction: column;
 }
 
-.block-form label{
+.main-settings label{
     color: rgb(231,231,231);
     font-size:25px;
 }
 
-.block-form input{
+.main-settings input{
     width: 100%;
     font-size:22px;
     color:rgb(231,231,231);
     background-color: rgb(74,84,92);
     border: none;
     outline: none;
-    margin-top: 13px;
+    margin-top: 22px;
     margin-bottom: 15px;
 }
 
-.block-form button{
+.main-settings button{
     margin-top:10px;
     color: rgb(124,124,124);
     border: 2px solid rgb(74,84,92);;
@@ -320,13 +330,13 @@ main{
     border-radius: 5px;
 }
 
-.block-form button:hover{
+.main-settings button:hover{
     background-color: rgb(59,59,59);
     border: 2px solid rgb(255,255,255);
     color: rgb(231,231,231);
 }
 
-.block-form a{
+.main-settings a{
     margin-top: 15px;
     margin-left: 5px;
     color: rgb(231,231,231);
@@ -343,3 +353,4 @@ main{
 .message-content{
     overflow-wrap: anywhere;
 }
+

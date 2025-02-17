@@ -1,11 +1,15 @@
 from django.db import models
-from datetime import date
 
-class Chat(models.Model):
-    id_chat = models.CharField(max_length=68, default = '')
-    name_chat = models.CharField(max_length=68, default = '')
-    email_user = models.CharField(max_length=68, default = '')
-    uid = models.CharField(max_length=5, default = '')
-    name_user = models.CharField(max_length=68, default = '')
-    message = models.CharField(max_length=5000, default = '')
-    date = models.DateField(default = date.today)
+class Message(models.Model):
+    id_chat = models.CharField(default='', max_length=10, blank=False, null=False)
+    name_chat = models.CharField(default='', max_length=20, blank=False, null=False)
+    uid = models.CharField(default='', max_length=6, blank=False, null=False)
+    content_message = models.CharField(default='', max_length=500, blank=False, null=False)
+    date = models.DateTimeField(blank=False, null=False)
+
+    def __str__(self):
+        return self.id_chat
+
+    class Meta:
+        verbose_name = "Message"
+        verbose_name_plural = "Messages"

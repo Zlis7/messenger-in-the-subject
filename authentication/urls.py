@@ -1,10 +1,8 @@
-from django.urls import path
 from authentication import views
+from django.urls import path
 
 urlpatterns = [
-    path('', views.index, name='home'),
-    path('login/', views.login, name='login'),
-    path('registration/', views.registration, name='registration'),
-    path('register_confirm/<slug:token>/', views.register_confirm, name='register_confirm'),
+    path('', views.index, name='index_auth'),
+    path('confirmation_registration/<slug:token>/', views.confirmation_registration, name='confirmation_registration'),
     path('logout/', views.logout, name='logout')
 ]
